@@ -33,7 +33,7 @@ conda install scipy==1.8.0 scikit_learn==1.1.3 pandas==1.3.4 absl-py==0.13.0 bio
 **Note**:Please ensure that the PyTorch version and Paddle version are compatible with your CUDA version. You can choose the appropriate versions to install to match your environment configuration.
 
 ## Data and Model Weights
-The datasets and model weights mentioned in the paper: [Data and Model](https://drive.google.com/file/d/12-LWH8qX6bUlOMaC2D16WJHls1fTqYH8/view?usp=sharing)
+The datasets and model weights mentioned in the paper: [Data and Model](https://zenodo.org/records/10715856)
 
 
 ## Designing
