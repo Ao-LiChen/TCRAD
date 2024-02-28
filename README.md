@@ -80,7 +80,7 @@ Input the CDR3B sequence and output the predicted Unbinding CDR3 structure to th
         --CDR3: the CDR3 sequence you want to predict the structure for.
         --Peptide: the peptide sequence you want to design the TCR for.
 
-Used for structural prediction of CDR3 in the test set.
+Used for structural prediction of CDR3 in the test set:
 
     python CDR3_stru_generate_TESTSET.py --bounded True
     Required:
