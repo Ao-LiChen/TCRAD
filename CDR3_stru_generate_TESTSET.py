@@ -81,8 +81,7 @@ def main(args):
     model.eval()
 
     l=len(batchs)
-
-    output_dir = "./output_stru/testset"
+    output_dir = args.output_dir
     os.makedirs(output_dir, exist_ok=True)
 
     while 1:
@@ -100,11 +99,8 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output_dir", type=str)
-    parser.add_argument("--bounded", type=bool)
+    parser.add_argument("--output_dir", type=str, default="./output_stru/testset")
+    parser.add_argument("--bounded", type=bool, default=True)
     args = parser.parse_args()
-
-    args.output_dir="./output_stru"
-    args.bounded=True
 
     main(args)

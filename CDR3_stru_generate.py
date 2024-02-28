@@ -113,13 +113,10 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--CDR3", type=str, help='CDR3 Sequence')
+    parser.add_argument("--CDR3", type=str, help='CDR3 Sequence',default="CATSALGDTQYF")
     parser.add_argument("--Peptide", type=str, help='Peptide Sequence')
     parser.add_argument("--BindingMode", type=bool, help='Binding or Unbinding')
     args = parser.parse_args()
-
-    args.CDR3 = "CATSALGDTQYF"
-    args.Peptide = "SLLMWITQC"
 
     if args.Peptide is None:
         args.BindingMode = False
