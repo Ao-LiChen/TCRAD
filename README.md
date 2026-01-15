@@ -1,6 +1,6 @@
 # TCRAD
 ## Introduction 
-TCRAD: A Deep Learning Based Pipeline for TCR Auto Design and Optimization. 
+TCRAD: An End-to-End Framework for Antigen-Targeted T Cell Receptor Design. 
 
 Publication: 
 
