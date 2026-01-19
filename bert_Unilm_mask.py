@@ -280,7 +280,7 @@ class BERT(nn.Module):
         # training model
         else:
             masked_pos = masked_pos[:, :, None].expand(len(input_ids), -1, self.d_model) # [batch_size, max_pred, d_model]
-            h_masked = torch.gather(output, 1, masked_pos) # masking position [batch_size, max_pred, d_model]#根据masked_pos的坐标，提取出output对应的256维向量
+            h_masked = torch.gather(output, 1, masked_pos) # masking position [batch_size, max_pred, d_model]
             h_masked = self.activ2(self.linear(h_masked)) # [batch_size, max_pred, d_model]
             logits_lm = self.fc2(h_masked) # [batch_size, max_pred, vocab_size]
             return logits_lm, output

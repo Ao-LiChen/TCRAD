@@ -26,7 +26,6 @@ def get_attn_pad_mask(seq_q):
     #pad_attn_mask = seq_q.data.eq(-1).unsqueeze(1)  # [batch_size, 1, seq_len]
 
     pad_attn_mask=pad_attn_mask.expand(batch_size, seq_len, seq_len)
-    # #我要保存pad_attn_mask到本地
     # pad_attn_mask = pad_attn_mask.cpu().numpy()
     # pad_attn_mask = pad_attn_mask.astype(bool)
     # pad_attn_mask=np.array(pad_attn_mask)
@@ -180,7 +179,7 @@ class BERT(nn.Module):
         # training model
         else:
             masked_pos = masked_pos[:, :, None].expand(len(input_ids), -1, self.d_model) # [batch_size, max_pred, d_model]
-            h_masked = torch.gather(output, 1, masked_pos) # masking position [batch_size, max_pred, d_model]#根据masked_pos的坐标，提取出output对应的256维向量
+            h_masked = torch.gather(output, 1, masked_pos) # masking position [batch_size, max_pred, d_model]
             h_masked = self.activ2(self.linear(h_masked)) # [batch_size, max_pred, d_model]
             logits_lm = self.fc2(h_masked) # [batch_size, max_pred, vocab_size]
             return logits_clsf,logits_lm, output

@@ -146,7 +146,6 @@ if __name__ == "__main__":
 
         logits_lm = logits_lm.cpu()
 
-        # 分析处理mask结果
         # for masked token prediction
         temperature = 1
         kk = F.softmax(logits_lm.view(-1, 24) / temperature, dim=1)
@@ -161,7 +160,6 @@ if __name__ == "__main__":
             f1 = kk[i].tolist()
             f3 = sorted(f1, reverse=True)
 
-            # 采用TOPP策略，累加到0.8
             TOPP = 0
             for j in range(24):
                 TOPP += f3[j]
@@ -171,7 +169,7 @@ if __name__ == "__main__":
             maxpre = max(candidate)
 
             ori_candidate = candidate
-            # 采用TOPK策略,分段
+
             if pos in [25, 23, 24]:
                 candidate = [_ for _ in candidate if (_ > 0.05)][:6]
             elif pos in [29, 30, 22, 27, 31, 26, 28, 21]:
@@ -180,7 +178,7 @@ if __name__ == "__main__":
                 candidate = [_ for _ in candidate if (_ > maxpre * 0.5) and (_ > 0.05)][:2]
             if candidate == []:
                 candidate = ori_candidate[:2]
-            # 采用topK策略
+
             ans = []
             for each in candidate:
                 ans.append([n2p[f1.index(each)], each])
@@ -204,9 +202,8 @@ if __name__ == "__main__":
         print(input_ids.size(0))
 
         l = len(input_ids)
-        # 处理填入MASK位置的值怎么选
 
-        # 处理下一个mask位置
+
         cand_maked_pos = cand_maked_pos[1:]
 
         if not len(cand_maked_pos):
@@ -220,7 +217,6 @@ if __name__ == "__main__":
         C[i][16:37] = [n2p[x] for x in C[i][16:37]]
         k = C[i][16:36]
 
-        # 使用join方法连接
         seq = ''.join(k)
         Generation.append(seq)
 
